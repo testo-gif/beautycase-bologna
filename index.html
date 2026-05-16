@@ -1,366 +1,615 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BeautyCase – Salone di Manicure | Bologna</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--primary:#c084fc;--primary-dark:#a855f7;--primary-light:#faf5ff;--primary-border:#e9d5ff;--text:#1a1a1a;--muted:#6b7280;--white:#fff;--bg:#fdfbff}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg)}
-h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BeautyCase – Salone di Manicure Bologna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── BANNER ── */
-.banner{background:var(--primary);color:#fff;text-align:center;padding:11px 16px;font-size:13px;font-weight:500;letter-spacing:.6px;position:sticky;top:0;z-index:1000}
-.banner span{opacity:.75;margin:0 8px}
+    :root {
+      --rose: #9e5f5f;
+      --rose-dark: #6e3d3d;
+      --rose-light: #c98a8a;
+      --rose-pale: #f0dada;
+      --blush: #f9f2f2;
+      --blush2: #eddada;
+      --cream: #fdf9f7;
+      --text: #2a1f1f;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', sans-serif;
+      --gkey: AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM;
+    }
 
-/* ── HERO ── */
-.hero{height:100vh;min-height:580px;background:url('https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.62) 100%)}
-.hero-content{position:relative;z-index:2;color:#fff;padding:0 20px}
-.hero-content h1{font-size:clamp(52px,10vw,110px);font-weight:300;letter-spacing:8px;text-transform:uppercase;line-height:1.05;margin-bottom:14px}
-.hero-content .sub{font-size:15px;font-weight:300;letter-spacing:5px;text-transform:uppercase;opacity:.85;margin-bottom:36px}
-.hero-cta{display:inline-block;padding:14px 44px;border:1.5px solid #fff;color:#fff;text-decoration:none;font-size:12px;letter-spacing:3px;text-transform:uppercase;transition:all .3s}
-.hero-cta:hover{background:#fff;color:var(--text)}
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--text); background: #fff; overflow-x: hidden; }
 
-/* ── NUMBERS ── */
-.numbers{background:var(--primary);padding:64px 20px}
-.numbers-grid{max-width:880px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
-.num-val{font-family:'Cormorant Garamond',serif;font-size:58px;font-weight:600;color:#fff;line-height:1;display:block;margin-bottom:8px}
-.num-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+    /* ── BANNER ACQUISTO ── */
+    #buy-banner {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 99999; background: #000; color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 130px;
+      font-family: var(--sans); font-size: 18px; font-weight: 400; gap: 24px;
+    }
+    #buy-banner .buy-text { flex: 1; line-height: 1.45; }
+    #buy-banner .buy-text strong { font-size: 22px; }
+    #buy-banner .buy-text .desktop { display: inline; }
+    #buy-banner .buy-text .mobile { display: none; }
+    #buy-banner .buy-cta {
+      display: inline-block; background: #ff4d00; color: #fff;
+      font-weight: 700; font-size: 16px; letter-spacing: 0.06em;
+      padding: 18px 36px; border-radius: 4px; text-decoration: none;
+      white-space: nowrap; transition: background 0.2s, transform 0.15s; flex-shrink: 0;
+    }
+    #buy-banner .buy-cta:hover { background: #e04400; transform: scale(1.03); }
+    @media(max-width:700px){
+      #buy-banner { padding: 0 18px; font-size: 15px; height: 110px; gap: 16px; }
+      #buy-banner .buy-text strong { font-size: 17px; }
+      #buy-banner .buy-text .desktop { display: none; }
+      #buy-banner .buy-text .mobile { display: inline; }
+      #buy-banner .buy-cta { font-size: 14px; padding: 14px 20px; }
+    }
 
-/* ── SECTION COMMONS ── */
-.sec{padding:96px 20px}
-.sec-alt{background:var(--primary-light)}
-.section-head{text-align:center;margin-bottom:56px}
-.section-head h2{font-size:clamp(34px,5vw,54px);font-weight:400;margin-bottom:14px}
-.section-head .bar{width:52px;height:2px;background:var(--primary);margin:0 auto}
-.section-head p{margin-top:14px;color:var(--muted);font-size:15px}
-.container{max-width:1100px;margin:0 auto}
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 130px; left: 0; right: 0; z-index: 1000;
+      padding: 0 40px; display: flex; align-items: center;
+      justify-content: space-between; height: 68px;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled { background: rgba(110,61,61,0.97); box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+    .nav-logo { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: #fff; text-decoration: none; letter-spacing: 0.04em; line-height: 1.3; }
+    .nav-logo span { display: block; font-size: 0.7rem; font-family: var(--sans); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose-pale); margin-top: 2px; }
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--rose-pale); }
+    @media(max-width:650px){ .nav-links { display: none; } }
 
-/* ── SERVICES ── */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.svc{border:1px solid var(--primary-border);padding:44px 32px;text-align:center;background:#fff;transition:all .35s}
-.svc:hover{border-color:var(--primary);transform:translateY(-5px);box-shadow:0 14px 44px rgba(192,132,252,.14)}
-.svc-icon{font-size:38px;margin-bottom:20px;display:block}
-.svc h3{font-size:22px;font-weight:500;margin-bottom:10px}
-.svc p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px}
-.svc-price{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--primary)}
+    /* ── HERO ── */
+    #hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; margin-top: 130px;
+    }
+    #hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://maps.googleapis.com/maps/api/place/photo?maxwidth=1920&photo_reference=Ab43m-u2mZe05C_V42ZcVWaH2Pgia9xqpxgKNZyNvgChK2jOjOAaI0X6OGIwVn2ybDrqoOKfJ2xdqrFoxSRzCTextOl2CC4KeiuwZSXqNjqzkDfpeNYNqQPhNWlbsXNyiQmEqhTesa3kTGfmhLRMYeYfL3CoGtOwXzAxI4rxn21f3z-qX-plQrQcoXmYDVdnRpIQMdOUg04BMk64JT6WMatwKR-z6WGYJnxNwvRSJD1Ud9uu6dMABEGI2LARHpXp1Y8ZZBRkMCw5qsAoGN4ZUJyLoRxidElDF1HqxDlxLfMA47ONDUK1FOGJ8SelP-aA91UClA7MZSCcPPsTIoxHdC5Yg8hpPeDrKePJbk2ATExqtNJFyU1KnxnCQSwHSU45qw729hrndZo3zT95L0zrV-rUCI4yfRLkMlnNtXncXKTVE2ccl-Y&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM');
+      background-size: cover; background-position: center;
+      filter: brightness(0.32); transform: scale(1.04); transition: transform 9s ease;
+    }
+    #hero:hover #hero-bg { transform: scale(1.0); }
+    #hero-content { position: relative; text-align: center; color: #fff; padding: 0 24px; max-width: 860px; }
+    .hero-eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--rose-pale); margin-bottom: 24px; }
+    #hero-content h1 { font-family: var(--serif); font-size: clamp(3rem, 6vw, 6rem); font-weight: 300; line-height: 1.1; letter-spacing: 0.02em; }
+    #hero-content h1 em { font-style: italic; color: var(--rose-pale); }
+    .hero-divider { width: 60px; height: 1px; background: var(--rose-light); margin: 30px auto; }
+    #hero-content p { font-family: var(--serif); font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 300; font-style: italic; color: rgba(255,255,255,0.8); margin-bottom: 44px; line-height: 1.7; }
+    .btn-hero { display: inline-block; padding: 16px 48px; border: 1px solid var(--rose-light); color: var(--rose-pale); font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, color 0.3s; }
+    .btn-hero:hover { background: var(--rose); border-color: var(--rose); color: #fff; }
+    .hero-scroll { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.35); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; }
+    .hero-scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, rgba(201,138,138,0.9), transparent); animation: scrollLine 2s ease-in-out infinite; }
+    @keyframes scrollLine { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
-/* ── ABOUT ── */
-.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.about-text h2{font-size:clamp(34px,4vw,50px);font-weight:400;margin-bottom:22px}
-.about-text p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:14px}
-.about-photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.about-photos img{width:100%;object-fit:cover;display:block}
-.about-photos img:first-child{grid-column:1/-1;height:240px}
-.about-photos img:not(:first-child){height:155px}
+    /* ── SEZIONI COMUNI ── */
+    section { padding: 96px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--rose); margin-bottom: 14px; }
+    .section-title { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 300; color: var(--rose-dark); line-height: 1.2; margin-bottom: 18px; }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .section-subtitle { font-size: 15px; font-weight: 300; color: #7a5a5a; line-height: 1.75; max-width: 560px; }
+    .rose-line { width: 48px; height: 1px; background: var(--rose-light); margin: 24px 0; }
 
-/* ── GALLERY ── */
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:280px 280px;gap:10px}
-.gallery-grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-.gallery-grid img:hover{transform:scale(1.03)}
-.gallery-grid .g-big{grid-column:1;grid-row:1/3}
+    /* ── NUMERI ── */
+    #numeri { background: var(--rose-dark); padding: 80px 24px; }
+    #numeri .section-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center; }
+    .numero-val { font-family: var(--serif); font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 300; color: var(--rose-pale); line-height: 1; }
+    .numero-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 12px; }
+    @media(max-width:640px){ #numeri .section-inner { grid-template-columns: repeat(2,1fr); gap: 32px; } }
 
-/* ── TESTIMONIALS ── */
-.testimonials-bg{background:var(--text);padding:96px 20px}
-.testimonials-bg .section-head h2{color:#fff}
-.testimonials-bg .section-head .bar{background:var(--primary)}
-.testi-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.testi-card{background:rgba(255,255,255,.05);border:1px solid rgba(192,132,252,.25);padding:36px 28px}
-.testi-stars{color:var(--primary);font-size:16px;margin-bottom:14px;letter-spacing:2px}
-.testi-card blockquote{font-size:15px;color:rgba(255,255,255,.78);line-height:1.75;font-style:italic;margin-bottom:20px}
-.testi-author{color:#fff;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500}
+    /* ── SERVIZI ── */
+    #servizi { background: var(--blush); }
+    .servizi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+    .servizio-card { background: #fff; padding: 40px 32px; transition: transform 0.3s, box-shadow 0.3s; border-top: 2px solid transparent; }
+    .servizio-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); border-top-color: var(--rose); }
+    .servizio-num { font-family: var(--serif); font-size: 3rem; font-weight: 300; color: var(--blush2); line-height: 1; margin-bottom: 20px; }
+    .servizio-name { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--rose-dark); margin-bottom: 10px; }
+    .servizio-desc { font-size: 13.5px; font-weight: 300; color: #7a5a5a; line-height: 1.65; margin-bottom: 24px; }
+    .servizio-price { display: inline-block; font-family: var(--serif); font-size: 1rem; color: var(--rose); border: 1px solid var(--rose-pale); padding: 6px 18px; background: var(--blush); letter-spacing: 0.04em; }
+    @media(max-width:900px){ .servizi-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:580px){ .servizi-grid { grid-template-columns: 1fr; } }
 
-/* ── HOURS ── */
-.hours-wrap{max-width:540px;margin:0 auto}
-.hours-table{width:100%;border-collapse:collapse;margin-top:36px}
-.hours-table tr{border-bottom:1px solid var(--primary-border)}
-.hours-table td{padding:14px 18px;font-size:15px}
-.hours-table td:first-child{color:var(--muted);text-align:left}
-.hours-table td:last-child{text-align:right;font-weight:500}
-.closed-day{color:#ef4444!important}
+    /* ── CHI SIAMO ── */
+    .chi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .chi-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .chi-photo { overflow: hidden; aspect-ratio: 3/4; }
+    .chi-photo:first-child { grid-column: 1 / -1; aspect-ratio: 16/9; }
+    .chi-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.94); transition: transform 0.6s ease, filter 0.4s; }
+    .chi-photo:hover img { transform: scale(1.04); filter: brightness(1); }
+    .chi-feature { display: flex; gap: 16px; margin-bottom: 28px; }
+    .chi-feature-icon { width: 36px; height: 36px; border: 1px solid var(--rose-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--rose); font-size: 14px; }
+    .chi-feature-text h4 { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--rose-dark); margin-bottom: 4px; }
+    .chi-feature-text p { font-size: 13.5px; font-weight: 300; color: #7a5a5a; line-height: 1.6; }
+    @media(max-width:780px){ .chi-grid { grid-template-columns: 1fr; gap: 48px; } }
 
-/* ── FAQ ── */
-.faq-list{max-width:800px;margin:0 auto}
-.faq-item{border-bottom:1px solid var(--primary-border);padding:22px 0;cursor:pointer}
-.faq-q{display:flex;justify-content:space-between;align-items:center;font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;gap:12px}
-.faq-q .arr{color:var(--primary);font-size:22px;transition:transform .3s;flex-shrink:0}
-.faq-a{font-size:15px;color:var(--muted);line-height:1.75;margin-top:14px;display:none}
-.faq-item.open .faq-a{display:block}
-.faq-item.open .arr{transform:rotate(90deg)}
+    /* ── GALLERIA ── */
+    #galleria { background: var(--rose-dark); padding: 80px 24px; }
+    #galleria .section-title { color: #fff; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 260px 260px; gap: 10px; margin-top: 48px; }
+    .gallery-item { overflow: hidden; position: relative; cursor: pointer; }
+    .gallery-item:first-child { grid-column: 1 / 2; grid-row: 1 / 3; }
+    .gallery-item:nth-child(4) { grid-column: 3 / 4; grid-row: 1 / 3; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s; filter: brightness(0.85); }
+    .gallery-item:hover img { transform: scale(1.06); filter: brightness(1); }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(110,61,61,0.55), transparent); opacity: 0; transition: opacity 0.3s; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    @media(max-width:700px){
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child, .gallery-item:nth-child(4) { grid-column: auto; grid-row: auto; }
+      .gallery-item { height: 200px; }
+    }
 
-/* ── MAP ── */
-.map-frame{margin-top:40px;border:1px solid var(--primary-border);overflow:hidden}
-.map-frame iframe{width:100%;height:440px;border:none;display:block}
+    /* ── TESTIMONIANZE ── */
+    #testimonianze { background: var(--blush); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+    .testi-card { background: #fff; padding: 36px 30px; border-left: 2px solid var(--rose-light); }
+    .testi-quote { font-family: var(--serif); font-size: 5rem; line-height: 0.6; color: var(--blush2); margin-bottom: 20px; display: block; }
+    .testi-text { font-family: var(--serif); font-size: 1.02rem; font-weight: 400; font-style: italic; color: var(--rose-dark); line-height: 1.75; margin-bottom: 24px; }
+    .testi-stars { color: var(--rose); font-size: 14px; margin-bottom: 14px; }
+    .testi-author { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #b09090; }
+    @media(max-width:820px){ .testi-grid { grid-template-columns: 1fr; } }
 
-/* ── FOOTER ── */
-footer{background:#0d0d0d;color:rgba(255,255,255,.6);padding:64px 20px 28px;text-align:center}
-.footer-logo{font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;letter-spacing:3px;margin-bottom:14px}
-footer p{font-size:14px;margin-bottom:6px}
-footer a{color:var(--primary);text-decoration:none}
-.footer-links{margin:22px 0}
-.footer-links a{font-size:13px;margin:0 14px}
-.footer-sep{margin-top:36px;padding-top:20px;border-top:1px solid #222;font-size:11px;color:rgba(255,255,255,.3)}
+    /* ── ORARI ── */
+    .orari-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; margin-top: 56px; }
+    .orari-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--blush2); }
+    .orari-row:last-child { border-bottom: none; }
+    .orari-day { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--rose-dark); }
+    .orari-time { font-size: 13.5px; font-weight: 400; color: #7a5a5a; }
+    .orari-time.closed { color: #c0a8a8; font-style: italic; }
+    .orari-note { background: var(--rose-dark); padding: 36px; color: rgba(255,255,255,0.62); font-size: 14px; line-height: 1.75; }
+    .orari-note-title { color: var(--rose-pale); font-family: var(--serif); font-size: 1.1rem; display: block; margin-bottom: 10px; }
+    @media(max-width:720px){ .orari-wrapper { grid-template-columns: 1fr; } }
 
-/* ── WHATSAPP ── */
-.wa{position:fixed;bottom:24px;right:24px;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 22px rgba(37,211,102,.42);z-index:900;transition:transform .3s}
-.wa:hover{transform:scale(1.12)}
+    /* ── FAQ ── */
+    #faq { background: var(--blush); }
+    .faq-list { margin-top: 56px; max-width: 800px; }
+    .faq-item { border-bottom: 1px solid var(--blush2); }
+    .faq-btn { width: 100%; background: none; border: none; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; text-align: left; gap: 16px; }
+    .faq-q { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--rose-dark); }
+    .faq-icon { width: 28px; height: 28px; border: 1px solid var(--rose-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--rose); font-size: 18px; transition: transform 0.3s; line-height: 1; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer p { font-size: 14.5px; font-weight: 300; color: #7a5a5a; line-height: 1.75; padding-bottom: 24px; }
 
-/* ── MODAL ── */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:2000;align-items:center;justify-content:center;padding:20px}
-.overlay.open{display:flex}
-.modal{background:#fff;max-width:580px;width:100%;max-height:80vh;overflow-y:auto;padding:44px;position:relative}
-.modal h3{font-size:28px;margin-bottom:20px}
-.modal p{font-size:14px;line-height:1.75;color:var(--muted);margin-bottom:10px}
-.modal-x{position:absolute;top:14px;right:18px;font-size:26px;cursor:pointer;background:none;border:none;color:var(--muted);line-height:1}
+    /* ── MAPPA ── */
+    #mappa { padding: 0; }
+    .mappa-wrapper { position: relative; }
+    .mappa-card { position: absolute; top: 40px; left: 40px; z-index: 10; background: var(--rose-dark); color: #fff; padding: 32px 36px; max-width: 290px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .mappa-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--rose-pale); margin-bottom: 14px; line-height: 1.35; }
+    .mappa-info { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.62); line-height: 1.85; }
+    .mappa-info strong { color: #fff; font-weight: 500; }
+    #mappa iframe { width: 100%; height: 480px; border: none; display: block; filter: grayscale(0.15) sepia(0.05); }
+    @media(max-width:600px){ .mappa-card { position: static; max-width: 100%; } }
 
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .numbers-grid{grid-template-columns:repeat(2,1fr)}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
-  .about-inner{grid-template-columns:1fr}
-  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
-  .gallery-grid .g-big{grid-column:1/-1;height:240px}
-  .testi-grid{grid-template-columns:1fr}
-}
-@media(max-width:580px){
-  .services-grid{grid-template-columns:1fr}
-  .numbers-grid{grid-template-columns:repeat(2,1fr);gap:24px}
-  .num-val{font-size:44px}
-}
-</style>
+    /* ── FOOTER ── */
+    footer { background: var(--rose-dark); color: rgba(255,255,255,0.45); padding: 64px 24px 32px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 32px; }
+    .footer-brand h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--rose-pale); margin-bottom: 6px; }
+    .footer-brand .footer-subtitle { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
+    .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose-light); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--rose-pale); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 12px; }
+    .footer-privacy-btn { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: var(--sans); transition: color 0.2s; }
+    .footer-privacy-btn:hover { color: var(--rose-pale); }
+    @media(max-width:720px){ .footer-top { grid-template-columns: 1fr; } }
+
+    /* ── PRIVACY MODAL ── */
+    #privacy-modal { display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.78); align-items: center; justify-content: center; padding: 24px; }
+    #privacy-modal.open { display: flex; }
+    .modal-box { background: #fff; max-width: 700px; width: 100%; max-height: 82vh; overflow-y: auto; padding: 48px; position: relative; }
+    .modal-close { position: absolute; top: 20px; right: 24px; background: none; border: none; font-size: 26px; cursor: pointer; color: var(--rose-dark); line-height: 1; }
+    .modal-box h2 { font-family: var(--serif); font-size: 2rem; margin-bottom: 24px; color: var(--rose-dark); }
+    .modal-box h3 { font-family: var(--serif); font-size: 1.15rem; color: var(--rose-dark); margin: 24px 0 10px; }
+    .modal-box p { font-size: 14px; line-height: 1.78; color: #5a5f6a; margin-bottom: 12px; }
+
+    /* ── CALL BUTTON ── */
+    #call-btn { position: fixed; bottom: 28px; right: 28px; z-index: 9000; width: 58px; height: 58px; border-radius: 50%; background: #1a6b3a; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(26,107,58,0.45); text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; }
+    #call-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(26,107,58,0.6); }
+    #call-btn svg { width: 28px; height: 28px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; position: relative; z-index: 1; }
+    .call-pulse { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%; background: #1a6b3a; animation: callPulse 2.2s ease-out infinite; }
+    @keyframes callPulse { 0%{transform:scale(1);opacity:0.6} 100%{transform:scale(1.75);opacity:0} }
+  </style>
 </head>
 <body>
 
-<!-- BANNER -->
-<div class="banner">✨ Anteprima sito <span>·</span> Realizzato da <strong>Simplo</strong> <span>·</span> Questo non è il sito ufficiale</div>
+<!-- BANNER ACQUISTO -->
+<div id="buy-banner">
+  <span class="buy-text">
+    <span class="desktop">Ti piace questo sito? Il tuo potrebbe essere identico — online in 5 giorni per <strong>€99</strong></span>
+    <span class="mobile">Vuoi un sito così? <strong>€99</strong></span>
+  </span>
+  <a class="buy-cta" href="https://buy.stripe.com/8x25kC7mo39M0bN1Mv1B601" target="_blank" rel="noopener">Inizia ora →</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    BeautyCase
+    <span>Nail Salon · Bologna</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#chi-siamo">Chi siamo</a></li>
+    <li><a href="#galleria">Galleria</a></li>
+    <li><a href="#orari">Orari</a></li>
+    <li><a href="#mappa">Contatti</a></li>
+  </ul>
+</nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>BeautyCase</h1>
-    <p class="sub">Salone di Manicure &nbsp;·&nbsp; Bologna</p>
-    <a href="tel:051199800791" class="hero-cta">Prenota ora</a>
+<section id="hero">
+  <div id="hero-bg"></div>
+  <div id="hero-content">
+    <p class="hero-eyebrow">Bologna · Via Farini, 29 · Salone di Manicure</p>
+    <h1>Beauty<em>Case</em></h1>
+    <div class="hero-divider"></div>
+    <p>Manicure, smalto gel e ricostruzioni a Bologna.<br>Cura, precisione e un'accoglienza che ti fa sentire a casa.</p>
+    <a href="#servizi" class="btn-hero">Scopri i servizi</a>
+  </div>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div>Scorri</div>
+</section>
+
+<!-- NUMERI -->
+<section id="numeri">
+  <div class="section-inner">
+    <div class="numero-item"><div class="numero-val">4.6★</div><div class="numero-label">Rating Google</div></div>
+    <div class="numero-item"><div class="numero-val">42</div><div class="numero-label">Recensioni verificate</div></div>
+    <div class="numero-item"><div class="numero-val">100%</div><div class="numero-label">Clienti soddisfatte</div></div>
+    <div class="numero-item"><div class="numero-val">Bologna</div><div class="numero-label">Via Farini, 29</div></div>
   </div>
 </section>
 
-<!-- NUMBERS -->
-<section class="numbers">
-  <div class="numbers-grid">
-    <div><span class="num-val">4,6</span><span class="num-label">Rating Google</span></div>
-    <div><span class="num-val">42</span><span class="num-label">Recensioni</span></div>
-    <div><span class="num-val">10+</span><span class="num-label">Anni di esperienza</span></div>
-    <div><span class="num-val">BO</span><span class="num-label">Via Farini, 29</span></div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="sec">
-  <div class="container">
-    <div class="section-head">
-      <h2>I Nostri Servizi</h2>
-      <div class="bar"></div>
-    </div>
-    <div class="services-grid">
-      <div class="svc">
-        <span class="svc-icon">💅</span>
-        <h3>Manicure Classica</h3>
-        <p>Cura completa delle unghie con lima, cuticole e smalto tradizionale. Scegli tra centinaia di colori.</p>
-        <div class="svc-price">€ 25</div>
+<!-- SERVIZI -->
+<section id="servizi">
+  <div class="section-inner">
+    <p class="section-label">I nostri trattamenti</p>
+    <h2 class="section-title">Servizi<br><em>su misura per te</em></h2>
+    <div class="rose-line"></div>
+    <p class="section-subtitle">Dal trattamento classico alla nail art più elaborata, ogni servizio è eseguito con prodotti di qualità e la massima cura del dettaglio.</p>
+    <div class="servizi-grid">
+      <div class="servizio-card">
+        <div class="servizio-num">01</div>
+        <div class="servizio-name">Manicure Classica</div>
+        <div class="servizio-desc">Cura completa delle mani: lima, cuticole, massaggio idratante e applicazione smalto. Il trattamento base per unghie sempre in ordine.</div>
+        <span class="servizio-price">da € 18</span>
       </div>
-      <div class="svc">
-        <span class="svc-icon">✨</span>
-        <h3>Semipermanente</h3>
-        <p>Gel semipermanente a lunga tenuta fino a 3 settimane. Finish brillante e colori che non sbiadiscono.</p>
-        <div class="svc-price">€ 40</div>
+      <div class="servizio-card">
+        <div class="servizio-num">02</div>
+        <div class="servizio-name">Smalto Gel / Semipermanente</div>
+        <div class="servizio-desc">Colore brillante e duraturo fino a 3-4 settimane. Ampia scelta di colori e finish. Rimozione sicura senza danneggiare l'unghia naturale.</div>
+        <span class="servizio-price">da € 30</span>
       </div>
-      <div class="svc">
-        <span class="svc-icon">💎</span>
-        <h3>Ricostruzione Unghie</h3>
-        <p>Ricostruzione con acrilico o gel per unghie lunghe e resistenti. Forma nail personalizzata.</p>
-        <div class="svc-price">€ 55</div>
+      <div class="servizio-card">
+        <div class="servizio-num">03</div>
+        <div class="servizio-name">Ricostruzione Acrilica</div>
+        <div class="servizio-desc">Ricostruzione professionale con acrilico per unghie forti e naturali. Forma personalizzata, lunghezza su misura e finitura impeccabile.</div>
+        <span class="servizio-price">da € 45</span>
       </div>
-      <div class="svc">
-        <span class="svc-icon">🎨</span>
-        <h3>Nail Art</h3>
-        <p>Decorazioni su misura: fiori, glitter, geometrie, french artistique e disegni personalizzati.</p>
-        <div class="svc-price">€ 5 / unghia</div>
+      <div class="servizio-card">
+        <div class="servizio-num">04</div>
+        <div class="servizio-name">Pedicure</div>
+        <div class="servizio-desc">Trattamento completo per i piedi: bagno rilassante, esfoliazione, cura delle cuticole, limatura e applicazione smalto a scelta.</div>
+        <span class="servizio-price">da € 28</span>
       </div>
-      <div class="svc">
-        <span class="svc-icon">🦶</span>
-        <h3>Pedicure Estetica</h3>
-        <p>Trattamento completo per i piedi: scrub esfoliante, idratazione intensa, cuticole e smalto.</p>
-        <div class="svc-price">€ 35</div>
+      <div class="servizio-card">
+        <div class="servizio-num">05</div>
+        <div class="servizio-name">Nail Art</div>
+        <div class="servizio-desc">Decorazioni personalizzate, french, gradienti, glitter e disegni a mano libera. Ogni unghia diventa un'opera d'arte unica e originale.</div>
+        <span class="servizio-price">da € 5 / unghia</span>
       </div>
-      <div class="svc">
-        <span class="svc-icon">🧴</span>
-        <h3>Rimozione Gel</h3>
-        <p>Rimozione professionale e sicura di gel, acrilico o semipermanente senza danneggiare le unghie.</p>
-        <div class="svc-price">€ 15</div>
+      <div class="servizio-card">
+        <div class="servizio-num">06</div>
+        <div class="servizio-name">Rimozione & Refill</div>
+        <div class="servizio-desc">Rimozione sicura di gel, acrilico e semipermanente. Refill di ricrescita per mantenere le tue ricostruzioni sempre perfette.</div>
+        <span class="servizio-price">da € 20</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CHI SIAMO -->
-<section class="sec sec-alt">
-  <div class="container">
-    <div class="about-inner">
-      <div class="about-text">
-        <h2>Chi Siamo</h2>
-        <p>BeautyCase nasce dalla passione per la nail art e dalla volontà di offrire a ogni cliente un'esperienza di bellezza autentica e curata nei minimi dettagli. Siamo nel cuore di Bologna, in Via Farini 29, a due passi dalla stazione.</p>
-        <p>Il nostro team è composto da tecniche specializzate, costantemente aggiornate sulle ultime tendenze internazionali. Usiamo esclusivamente prodotti di alta qualità, certificati e sicuri: la salute delle tue unghie è la nostra priorità.</p>
-        <p>Siamo orgogliose di essere un salone <strong>LGBTQ+ friendly</strong> e <strong>di proprietà di donne</strong>: un luogo dove tutti sono i benvenuti, sempre.</p>
+<section id="chi-siamo">
+  <div class="section-inner">
+    <div class="chi-grid">
+      <div class="chi-text">
+        <p class="section-label">Il nostro team</p>
+        <h2 class="section-title">Elena, Simona<br><em>e Veronica</em></h2>
+        <div class="rose-line"></div>
+        <p style="font-size:15px;line-height:1.85;color:#7a5a5a;margin-bottom:36px;font-weight:300;">
+          BeautyCase è un salone di manicure nel cuore di Bologna, in Via Farini 29, gestito da tre professioniste che hanno fatto della cura delle mani la loro passione. Elena, Simona e Veronica ti accolgono in un ambiente caldo e familiare, dove ogni cliente è trattata con attenzione e dedizione. Un posto dove stare bene — e uscire con le unghie perfette.
+        </p>
+        <div class="chi-feature">
+          <div class="chi-feature-icon">◆</div>
+          <div class="chi-feature-text">
+            <h4>Team tutto al femminile</h4>
+            <p>Tre professioniste esperte, pronte a consigliarti il trattamento più adatto alle tue esigenze.</p>
+          </div>
+        </div>
+        <div class="chi-feature">
+          <div class="chi-feature-icon">◆</div>
+          <div class="chi-feature-text">
+            <h4>Prodotti di qualità</h4>
+            <p>Utilizziamo solo prodotti professionali, sicuri e testati per la salute delle tue unghie.</p>
+          </div>
+        </div>
+        <div class="chi-feature">
+          <div class="chi-feature-icon">◆</div>
+          <div class="chi-feature-text">
+            <h4>Ambiente accogliente</h4>
+            <p>Un salone pulito, curato e LGBTQ+ friendly dove ogni persona è benvenuta.</p>
+          </div>
+        </div>
       </div>
-      <div class="about-photos">
-        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=80" alt="Interno salone BeautyCase">
-        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=400&q=80" alt="Nail art">
-        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=400&q=80" alt="Manicure">
+      <div class="chi-photos">
+        <div class="chi-photo">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photo_reference=Ab43m-tRBm3R3Wkol5TIprNiGySV-XEtmM9aUMRaiYr_m9E5vGEK6aa7V15tzR8BwjAxy8z7m4xxBncB2PPv4T5KkxOLk0bpGF-JHoRadbNAzD6wVtvgS3U2UTjbXC9XoNaFrmi7L0-LVxgsxv2dx5wD--mxctNKwFVggb2HtSf4Ci6lmsLvlD4tck6Nz1GpMurKhXyCtiP_24DpMgGNKj-uiKAx4qDp4Wn4T2F8bjzizdj970vLktUXmaL4jvCvIhviBxKX1eTMz--jPVHIHpdxz9VylOiNmQGb4x7ZzQURgeh_1h9abepUnVedBQa1gIZt93fmry8rB-J2IBCYJrPv7cbub36yxOS1kApLCre3z2W3P0iBWc8oCGfxVeA_ISK7G1gSojx8ffU_m0dEZs4t2JCSczYcSg-cNlrJKonbT5NiPYMF&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM" alt="BeautyCase salone" loading="lazy" />
+        </div>
+        <div class="chi-photo">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=Ab43m-sDm9sCrjRa615rzWd1LlqaQJTAx7U3GCKiPPVE3WHHZgcIowDHEuhYN3emXRtfXitfMVJaPPf-uLER9y02UL821_zfbtDd18pwXP3fDMqBXX5TPwhfiLefz3LEBSmdk_vkAuiG8Ry7CVBUQ6sH0z3KOzjib2kUSZVlvCtAyQcAMYk5K3HyYPeK5LcifiSPiY_1Cgav6f45xg_Cw_g-Lvdlb2A-Fvye_QnSSDjOG9zUUpFQ9cY1_AMBtuSmGUQZHjZSvTDeHDoF4PDkJub_jcUczIuglO3fCv9ny-juUd_d-QoBi4spjAzOmrS6uw0_F1WuYg_XvRG2PGJ_AKwIlZ9jvqUrrryIl8qnxmPBO3nQuVI_8vZtRe5uT72eNuREZjqsxJQpeW5bPvB18S4KaXhe5iF6GYpRhsf-6bTTtgEz7g&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM" alt="Manicure dettaglio" loading="lazy" />
+        </div>
+        <div class="chi-photo">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference=Ab43m-vptzHBW35gTO7LDzc05-DTzQPOTN08iZbDnueLRoo_U0tS0To2X2vvznnwwkww9LTbB_JliJIK9oC_zvpbsp9cPlxABX43nVxMPPtBrKYXd5ptWPZ3KLX1EgvjQehZ-2fxNXpvh0y0bAKBJ1jlOj7I8JjKZg-yGjY7_Y-6lmKCc2JpEX1lj6qePxu6V7OWLTXuU1idBSyQGfnfvSwA4CwO0NvCuXx0xxsaFNi3fMzc7mIm5j8uB4OEz7td-cjRzLk7-Vw58cdCByZ6yLJruhwQpU3evr0IWsajBaZso4m8Kpijv6ExrLAUHwUdDpHZP2syKbTVblJv1zVfF1nvsmc8gbT-6LbjHxXLaoKgmIh5uwP7TWxY_1K6Ihk5G_aMf3XlpDfI2jS11fmsksnUr7D2yhgnK4MDUR43HqAVZd1vCobU&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM" alt="Interno salone" loading="lazy" />
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="sec">
-  <div class="container">
-    <div class="section-head">
-      <h2>Galleria</h2>
-      <div class="bar"></div>
-    </div>
+<!-- GALLERIA -->
+<section id="galleria">
+  <div class="section-inner">
+    <p class="section-label">Il salone</p>
+    <h2 class="section-title" style="color:#fff;">Foto <em style="color:var(--rose-pale)">reali</em></h2>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
     <div class="gallery-grid">
-      <img class="g-big" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&h=580&q=80" alt="Salone">
-      <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=500&h=280&q=80" alt="Manicure">
-      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=500&h=280&q=80" alt="Nail art">
-      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&h=280&q=80" alt="Salone beauty">
-      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=500&h=280&q=80" alt="Trattamento">
+      <div class="gallery-item">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=Ab43m-saDTojmzMD7MK31g9o1r3QlXg_LWu38KI1bn-C7LOOCbIDUA2Pfuw5DNQgGgDEfVrQzGKG1OBCt4KgJQIpwdv9_Mu6KmPkpmZdKhOKA1ZRO0HRp4PPvvbjmylrDE5cmUn_8b1w37C0KqNoyXuCxqPMfmUE71tlQTbMGWt6usnaXc6LhHYloJka8sAfgxDOtS5vEQn9sO-ogUGuRe_cpJVVwTezcycO9sS2v3_qZWhA1n8lbcMF924wbVtWjQMJnqDs22ArGSaBEb5wDSe3pDSyljVl1_q_kUM-5NVXmhz9dsxFDvSdlug0SrjCvKz_MLjphrEH0BBGzvcI_J7kxpnEqXlmpR5NAmHKWsi7tKoqLuoGCpe36oFV-32P9HN9R3-QRmRyEpXt9xgL28MCVC2Hh86Bl_d2wBKuSm6dqMu6uQ-D&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM" alt="BeautyCase" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photo_reference=Ab43m-vzGGt0_p3sysPg72yrp-q8ep35rba38Wt3adMxz-Qg9L2AVHiKhtJVtvjnZqUDugpWxMDByTn31hY-wBO4m6CZKl11Bm6NdO5K-cDtNdMEaAleDUkEGMG0ouV_gexTm7fi-aVX4DU9dSejy4IKD5Xr637F1LNiuEl60rTqfRP66dvO46VYRAXmynI99zWtH3WW_RrzOXfH5OJcBF5Qp7lmWMJkOjOsjO2J0lT8LeEfHUep0RdxLdMHSxuJ3FhSjeIKHoN-ZSP9qxQbWQCHnM51vg6HdwYz-cnBEklYZCpXEHIW0d-1doT6zs2l4Qx5_Sgyl7Yr8SF26AY4gDI8ou-L1Js8VwNI2L8g2nz1EglnPHmSFL73XxL6tdOwFqdGOjzmkPLj8m4p1npr3PLVD_LM_DhU9DeLg6SdjH3re60&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM" alt="Nail art" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photo_reference=Ab43m-tfV0fY9XPY03DkiQGFLjzZ2HrvGayO_Dsssa2sj12Ndap8ErLx-Flr1-gDP26lItUG9w_nWVzM8DZJHDPKWC6CyN-T0Eiegni_cVb_m4h-ClD0AqBw57_qGkLuCU-ZGuBqqPqPjESJxIXebWL-g-JZa_m6G4uVfSgYo4QeF6xbLuoh70CjImPH2PGmcMWgtysZslsw9t9D6xjH0BcQMex1L_mbjPQqlFvKFiWBlkUvENeR8ziR2mcZBNqodLytXldZ0xhVAXP8pQg_hLg3wt5SSn2L1VL4s7zgC-g5beHc4DxiIEEOCmfYw2KnSG9PwkeHItXB6JxBK2dHRo0Wi4DtVg1kB89bNIBfotgm0sxNWmkzfkrKosH42XMtJmZ2avDArz1zLeYFRQhD1YOOl2LlylNm9dGXKU52A0s1xlkvqmO8&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM" alt="Smalto gel" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photo_reference=Ab43m-tavueMnxHPaws90fZOJCag41SZ7gO5Y6ZNxN_OLyoRkTWR7wb8HBNoGbFquHkuHDTiMExr6ExMd8GB3CtcPauyln7gP8uL7xmdPYu6XNhyBpl0IJ8AvhQfPQr2D4DzF4WcdIOfoYYL26w95QD_OD2fL8z61fmzfciIj11E1UMRQ4pMdIkq4CSITZtBPj1BmXRQPleOJtOUYJtR2ar3I050kntAAeq2s6CHBe3rAlzGayNChtgaFSi7LJYCGaZr5QvUggRMLFVtZTXZALfiGhYXwT0UYl7SZwQGdooVNmUlLdRJdsfQA3XaJkMjoKtw9ipvT5CIopOGFrS7WLKdFYRxwznE3CDNfxigmNzrNGYPHCNl7xlHVtDyI6EArIFDiTBOu5ApDi6KaKqhAGwzS3wAgoM1cXn5KycuW3sujsGs8yil&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM" alt="Manicure" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photo_reference=Ab43m-tdcPZetLy0SXOqtRnIOGJsz4MLrI2yuSbk5grJDzgT3pynupZRrRZ1H2i2s5VoUKd_Gj69P8ROmnqhb2VbvGRVXfsnhgR7uXAl7Rqu4BZU0oFIB-quafNYXfXIFw0cc_Pd4XeGho6gvkQlcI64zu7C-IwGYXI01p1g2ZlRuj_Tawy1VCGi7F5se8E_7FGQoEM8JMqUXt4iXF6M_GQiLE4dg9-Ad9txH8-CF8C00e6Y8TNFCELfqBlrA9IUyN5WrCrZD4bif0ad4yJcpHf3Y-GpxB26r-Tg4c8fuJkeSJZeA_dXJxbM70y-iti4x9ywk3nr3hsBy8zbcHqYc8DGhET0XScGkxOEqLi1sbtHOgGwWq5O4KMZ2Qk434Ts4qUVx_jVJGLj5FcHcBhLJmxMRooM_NNLD4TI6Cg1K8_3jEdpC72c&key=AIzaSyCYXbAb5oATfgJRzDY7v7_wNhQ6F7PltAM" alt="Ambiente salone" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials-bg">
-  <div class="section-head"><h2>Cosa Dicono di Noi</h2><div class="bar"></div></div>
-  <div class="testi-grid">
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <blockquote>"Posto meraviglioso! La mia manicure semipermanente è durata quasi un mese senza sbeccature. Personale gentilissimo e super professionale. Tornerò sicuramente!"</blockquote>
-      <div class="testi-author">— Giulia M.</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <blockquote>"Finalmente un salone dove mi sento davvero accolta. La nail art che mi hanno fatto è spettacolare — tutte le mie amiche me la invidiano!"</blockquote>
-      <div class="testi-author">— Sara B.</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★☆</div>
-      <blockquote>"Ho fatto la ricostruzione con gel per la prima volta e sono rimasta stupita dalla qualità e dalla durata. Un piccolo gioiello nel centro di Bologna."</blockquote>
-      <div class="testi-author">— Federica L.</div>
+<!-- TESTIMONIANZE -->
+<section id="testimonianze">
+  <div class="section-inner">
+    <p class="section-label">Recensioni Google · 4.6★</p>
+    <h2 class="section-title">Cosa dicono<br><em>le clienti</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <span class="testi-quote">"</span>
+        <p class="testi-text">Professionalità e accoglienza ma anche simpatia e per me, come essere in famiglia. Elena, Simona e Veronica una squadra di donne preparate e pronte a farti sentire "speciale".</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">Cristina Cosentino · Google</div>
+      </div>
+      <div class="testi-card">
+        <span class="testi-quote">"</span>
+        <p class="testi-text">Centro estetico di ottimo livello. Ambiente molto pulito e curato. Gentilezza e professionalità. Ottima Elena con l'acrilico e lo smalto gel — una vera professionista!</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">Valentina Colli · Google</div>
+      </div>
+      <div class="testi-card">
+        <span class="testi-quote">"</span>
+        <p class="testi-text">Grande cura e attenzione ai clienti, bravissime! Attente alle tue richieste e sicure nel consigliarti il meglio per ogni dubbio o problema.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">Benedetta Descovich · Google</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- HOURS -->
-<section class="sec sec-alt">
-  <div class="hours-wrap">
-    <div class="section-head"><h2>Orari di Apertura</h2><div class="bar"></div></div>
-    <table class="hours-table">
-      <tr><td>Lunedì</td><td>13:00 – 19:00</td></tr>
-      <tr><td>Martedì</td><td>10:00 – 19:00</td></tr>
-      <tr><td>Mercoledì</td><td>10:00 – 19:00</td></tr>
-      <tr><td>Giovedì</td><td>10:00 – 19:00</td></tr>
-      <tr><td>Venerdì</td><td>10:00 – 19:00</td></tr>
-      <tr><td>Sabato</td><td>10:00 – 18:00</td></tr>
-      <tr><td>Domenica</td><td class="closed-day">Chiuso</td></tr>
-    </table>
+<!-- ORARI -->
+<section id="orari">
+  <div class="section-inner">
+    <p class="section-label">Orari di apertura</p>
+    <h2 class="section-title">Quando<br><em>venirci</em></h2>
+    <div class="rose-line"></div>
+    <div class="orari-wrapper">
+      <div>
+        <div class="orari-row"><span class="orari-day">Lunedì</span><span class="orari-time">13:00 – 20:30</span></div>
+        <div class="orari-row"><span class="orari-day">Martedì</span><span class="orari-time">10:00 – 19:30</span></div>
+        <div class="orari-row"><span class="orari-day">Mercoledì</span><span class="orari-time">10:00 – 19:30</span></div>
+        <div class="orari-row"><span class="orari-day">Giovedì</span><span class="orari-time">13:00 – 20:30</span></div>
+        <div class="orari-row"><span class="orari-day">Venerdì</span><span class="orari-time">10:00 – 19:30</span></div>
+        <div class="orari-row"><span class="orari-day">Sabato</span><span class="orari-time">09:00 – 16:00</span></div>
+        <div class="orari-row"><span class="orari-day">Domenica</span><span class="orari-time closed">Chiuso</span></div>
+      </div>
+      <div class="orari-note">
+        <span class="orari-note-title">Prenota il tuo appuntamento</span>
+        Per fissare un appuntamento contattaci telefonicamente. Ti consigliamo di prenotare in anticipo, specialmente nel weekend — il salone si riempie in fretta!
+        <br><br>
+        <span class="orari-note-title">📍 Via Farini, 29</span>
+        40124 Bologna BO · Centro storico
+        <br><br>
+        <span class="orari-note-title">📞 051 1998 0079</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="sec">
-  <div class="container">
-    <div class="section-head"><h2>Domande Frequenti</h2><div class="bar"></div></div>
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label">Domande frequenti</p>
+    <h2 class="section-title">Hai delle<br><em>domande?</em></h2>
+    <div class="rose-line"></div>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q">Quanto dura il semipermanente?<span class="arr">›</span></div>
-        <div class="faq-a">Applicato professionalmente, il semipermanente dura in media 2–3 settimane senza sbeccature. La durata varia in base alla cura quotidiana e all'uso di guanti durante i lavori domestici.</div>
+        <button class="faq-btn">
+          <span class="faq-q">Quanto dura lo smalto semipermanente?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Lo smalto semipermanente dura mediamente 3-4 settimane senza scheggiarsi. La durata dipende dalla cura delle mani e dal tipo di attività svolta. Consigliamo di tornare per il refill o la rimozione entro 4 settimane per mantenere le unghie in salute.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">È necessario prenotare?<span class="arr">›</span></div>
-        <div class="faq-a">Consigliamo sempre di prenotare in anticipo, soprattutto nel weekend. Puoi contattarci via telefono o WhatsApp al 051 1998 0079.</div>
+        <button class="faq-btn">
+          <span class="faq-q">La ricostruzione acrilica danneggia le unghie naturali?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Eseguita correttamente da professioniste esperte, la ricostruzione acrilica non danneggia l'unghia naturale. È fondamentale affidarsi a chi conosce le tecniche giuste e utilizza prodotti di qualità. La nostra rimozione è sempre sicura e graduale.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Che prodotti utilizzate?<span class="arr">›</span></div>
-        <div class="faq-a">Utilizziamo esclusivamente prodotti certificati CE, privi di sostanze nocive. I nostri smalti sono 5-free o superiori, i gel sono dermatologicamente testati.</div>
+        <button class="faq-btn">
+          <span class="faq-q">È necessario prenotare?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>La prenotazione è consigliata per garantirsi il posto, specialmente per i trattamenti più lunghi come la ricostruzione e il pedicure completo. Chiamateci per verificare la disponibilità — spesso riusciamo ad accogliervi anche senza prenotazione.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Offrite servizi anche per uomo?<span class="arr">›</span></div>
-        <div class="faq-a">Assolutamente sì! Siamo un salone inclusivo e accogliamo tutti. Proponiamo manicure e pedicure anche per uomo, con finish opaco o neutro su richiesta.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Come si raggiunge il salone?<span class="arr">›</span></div>
-        <div class="faq-a">Siamo in Via Farini 29, nel centro storico di Bologna, a pochi minuti dalla stazione ferroviaria. Raggiungibili con le principali linee bus; parcheggi a pagamento nelle vicinanze.</div>
+        <button class="faq-btn">
+          <span class="faq-q">Che prodotti utilizzate?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Utilizziamo esclusivamente prodotti professionali certificati, selezionati per la loro qualità e sicurezza. I nostri smalti gel e i materiali per la ricostruzione sono privi di sostanze nocive e rispettosi della salute delle unghie.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MAP -->
-<section class="sec sec-alt">
-  <div class="container">
-    <div class="section-head">
-      <h2>Dove Siamo</h2>
-      <div class="bar"></div>
-      <p>Via Farini, 29 &nbsp;·&nbsp; 40124 Bologna BO</p>
+<!-- MAPPA -->
+<section id="mappa">
+  <div class="mappa-wrapper">
+    <div class="mappa-card">
+      <h3>BeautyCase<br>Bologna</h3>
+      <div class="mappa-info">
+        <strong>Via Farini, 29</strong><br>
+        40124 Bologna BO<br>
+        Centro storico<br><br>
+        <strong>Tel:</strong> 051 1998 0079<br>
+        <strong>Orari:</strong> Mar–Ven · 10:00–19:30<br>
+        <strong>Sab:</strong> 09:00–16:00
+      </div>
     </div>
-    <div class="map-frame">
-      <iframe
-        src="https://www.openstreetmap.org/export/embed.html?bbox=11.3395%2C44.4945%2C11.3455%2C44.4985&layer=mapnik&marker=44.4963%2C11.3421"
-        allowfullscreen loading="lazy" title="Mappa BeautyCase Bologna">
-      </iframe>
-    </div>
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html?bbox=11.3390%2C44.4960%2C11.3480%2C44.5020&amp;layer=mapnik&amp;marker=44.4993%2C11.3435"
+      title="Mappa BeautyCase Bologna"
+      loading="lazy">
+    </iframe>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">BeautyCase</div>
-  <p>Via Farini, 29 &nbsp;·&nbsp; 40124 Bologna BO</p>
-  <p>Tel: <a href="tel:051199800791">051 1998 0079</a></p>
-  <div class="footer-links">
-    <a href="#" onclick="document.getElementById('pm').classList.add('open');return false">Privacy Policy</a>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2>BeautyCase</h2>
+        <div class="footer-subtitle">Nail Salon · Bologna · Via Farini</div>
+        <p>Salone di manicure nel cuore di Bologna. Manicure, smalto gel, ricostruzioni e nail art eseguite con cura e passione da un team tutto al femminile.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Servizi</h4>
+        <ul>
+          <li><a href="#servizi">Manicure classica</a></li>
+          <li><a href="#servizi">Smalto gel</a></li>
+          <li><a href="#servizi">Ricostruzione acrilica</a></li>
+          <li><a href="#servizi">Pedicure</a></li>
+          <li><a href="#servizi">Nail Art</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#chi-siamo">Chi siamo</a></li>
+          <li><a href="#orari">Orari</a></li>
+          <li><a href="#mappa">Dove siamo</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#" onclick="document.getElementById('privacy-modal').classList.add('open');return false;">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 BeautyCase – Via Farini 29, 40124 Bologna</span>
+      <button class="footer-privacy-btn" onclick="document.getElementById('privacy-modal').classList.add('open')">Privacy Policy</button>
+    </div>
   </div>
-  <div class="footer-sep">© 2025 BeautyCase &nbsp;·&nbsp; Sito realizzato da Simplo &nbsp;·&nbsp; Questa è un'anteprima dimostrativa</div>
 </footer>
 
-<!-- WHATSAPP -->
-<a class="wa" href="https://wa.me/390511998007" target="_blank" rel="noopener" title="Scrivici su WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#fff">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-</a>
-
 <!-- PRIVACY MODAL -->
-<div class="overlay" id="pm" onclick="if(event.target===this)this.classList.remove('open')">
-  <div class="modal">
-    <button class="modal-x" onclick="document.getElementById('pm').classList.remove('open')">×</button>
-    <h3>Privacy Policy</h3>
-    <p><strong>Titolare del trattamento:</strong> BeautyCase, Via Farini 29, 40124 Bologna BO.</p>
-    <p><strong>Dati raccolti:</strong> Questo sito non raccoglie dati personali, non utilizza cookie di profilazione né strumenti di analytics di alcun tipo.</p>
-    <p><strong>Contatti:</strong> Se ci contatti via telefono o WhatsApp, i dati forniti saranno usati esclusivamente per rispondere alla richiesta e organizzare l'appuntamento. Non vengono ceduti a terzi.</p>
-    <p><strong>Diritti dell'interessato:</strong> Ai sensi del GDPR (Reg. UE 2016/679) hai diritto di accesso, rettifica, cancellazione e portabilità dei dati. Contattaci al 051 1998 0079.</p>
-    <p><strong>Ultimo aggiornamento:</strong> Maggio 2025.</p>
+<div id="privacy-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('privacy-modal').classList.remove('open')">×</button>
+    <h2>Privacy Policy</h2>
+    <p>Ai sensi del Regolamento UE 2016/679 (GDPR), questa pagina descrive le modalità di trattamento dei dati personali degli utenti che consultano questo sito web.</p>
+    <h3>Titolare del trattamento</h3>
+    <p>BeautyCase · Via Farini, 29 · 40124 Bologna BO · Tel: 051 1998 0079</p>
+    <h3>Dati raccolti</h3>
+    <p>Questo sito è una pagina di presentazione statica. Non raccoglie dati personali tramite form, non utilizza cookie di profilazione e non installa cookie di terze parti.</p>
+    <h3>Contenuti di terze parti</h3>
+    <p>Le immagini sono fornite tramite Google Places API (maps.googleapis.com). La mappa è fornita da OpenStreetMap (openstreetmap.org).</p>
+    <h3>Diritti dell'utente</h3>
+    <p>Hai diritto di accesso, rettifica, cancellazione e portabilità dei dati. Contatta il titolare ai recapiti indicati sopra.</p>
+    <h3>Modifiche</h3>
+    <p>Questa privacy policy può essere aggiornata. Ultimo aggiornamento: maggio 2025.</p>
   </div>
 </div>
 
+<!-- CALL STICKY -->
+<a id="call-btn" href="tel:+390511998 0079" aria-label="Chiamaci">
+  <div class="call-pulse"></div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+  </svg>
+</a>
+
 <script>
-document.querySelectorAll('.faq-item').forEach(el=>{
-  el.querySelector('.faq-q').addEventListener('click',()=>el.classList.toggle('open'));
-});
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+  document.getElementById('privacy-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
 </script>
 </body>
 </html>
